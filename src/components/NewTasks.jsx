@@ -1,6 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
+import { ProjectContext } from "../Context/ProjectContextProvider";
 
-function NewTasks({ onTaskAdd }) {
+function NewTasks({}) {
+  const ctxValues = useContext(ProjectContext);
+
   const [taskInput, setTaskInput] = useState("");
   const [error, setError] = useState(null);
 
@@ -10,7 +13,7 @@ function NewTasks({ onTaskAdd }) {
       setError(<p className="text-red-400">Please add a valid task.</p>);
       return;
     }
-    onTaskAdd(taskInput);
+    ctxValues.onTaskAdd(taskInput);
     setTaskInput("");
   }
 

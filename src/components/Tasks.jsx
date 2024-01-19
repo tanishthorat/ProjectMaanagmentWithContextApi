@@ -1,12 +1,14 @@
-import React from "react";
-import NewTasks from "./components/NewTasks";
+import React, { useContext } from "react";
+import NewTasks from "./NewTasks";
+import { ProjectContext } from "../Context/ProjectContextProvider";
 
-function Tasks({ tasks, onTaskAdd, onTaskDelete }) {
-  console.log(tasks);
+function Tasks({ tasks }) {
+  const ctxValues = useContext(ProjectContext);
+  // console.log(tasks);
   return (
     <section>
       <h2 className="text-2xl text-slate-700 font-bold mb-4 ">Tasks</h2>
-      <NewTasks onTaskAdd={onTaskAdd} onTaskDelete={onTaskDelete} />
+      <NewTasks />
       {tasks.length === 0 && (
         <p className="text-slate-800 my-4">
           This Project does not have any tasks yet.
@@ -19,7 +21,7 @@ function Tasks({ tasks, onTaskAdd, onTaskDelete }) {
               <span>{task.text}</span>
               <button
                 className="text-slate-700 hover:text-red-400"
-                onClick={() => onTaskDelete(task.id)}
+                onClick={() => ctxValues.onTaskDelete(task.id)}
               >
                 Clear
               </button>

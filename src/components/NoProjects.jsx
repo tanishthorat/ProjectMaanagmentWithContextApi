@@ -1,8 +1,13 @@
-import React from "react";
 import noProjectImage from "../assets/no-projects.png";
 import Button from "./Button";
 
-export default function NoProjects({ onStartAddProject }) {
+import React, { useContext } from "react";
+import { ProjectContext } from "../Context/ProjectContextProvider";
+
+export default function NoProjects() {
+  const { handleStartAddProject: onStartAddProject } =
+    useContext(ProjectContext);
+
   return (
     <div className="mt-24 text-center w-2/3">
       <img

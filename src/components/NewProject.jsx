@@ -1,8 +1,12 @@
 import Input from "./Input";
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import Modal from "./Modal";
+import { ProjectContext } from "../Context/ProjectContextProvider";
 
-function NewProject({ onAdd, onCancel }) {
+function NewProject() {
+  const { handleAdd: onAdd, handleCancleAddProject: onCancel } =
+    useContext(ProjectContext);
+
   const modal = useRef();
   const title = useRef();
   const description = useRef();

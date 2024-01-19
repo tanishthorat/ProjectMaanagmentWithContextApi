@@ -1,13 +1,14 @@
-import React from "react";
-import Tasks from "../Tasks";
+import Tasks from "./Tasks";
+import React, { useContext } from "react";
+import { ProjectContext } from "../Context/ProjectContextProvider";
 
-function SelectedProject({
-  project,
-  onDelete,
-  tasks,
-  onTaskAdd,
-  onTaskDelete,
-}) {
+function SelectedProject() {
+  const {
+    selectedProject: project,
+    handleDeleteProject: onDelete,
+    projects: { tasks },
+  } = useContext(ProjectContext);
+
   const formattedDate = new Date(project.duedate).toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
@@ -32,7 +33,7 @@ function SelectedProject({
           {project.description}
         </p>
       </header>
-      <Tasks tasks={tasks} onTaskAdd={onTaskAdd} onTaskDelete={onTaskDelete} />
+      <Tasks tasks={tasks} />
     </div>
   );
 }
